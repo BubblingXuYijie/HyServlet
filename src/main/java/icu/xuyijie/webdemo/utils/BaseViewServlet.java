@@ -17,12 +17,15 @@ import java.io.IOException;
 /**
  * @author 徐一杰
  * @date 2024/9/18 15:57
- * @description
+ * @description thymeleaf 模板引擎基础类，使用方法是继承这个类
  */
 public class BaseViewServlet extends HttpServlet {
     private final transient TemplateEngine templateEngine = new TemplateEngine();
     private transient JakartaServletWebApplication jakartaServletWebApplication;
 
+    /**
+     * init 方法会在每个子类的 doGet 或 doPost 方法执行前执行，从而达到初始化 TemplateEngine 的目的
+     */
     @Override
     public void init() throws ServletException {
         // 取出 servlet 程序运行环境
@@ -42,6 +45,12 @@ public class BaseViewServlet extends HttpServlet {
         templateEngine.setTemplateResolver(templateResolver);
     }
 
+    /**
+     * 子类在 doGet 或 doPost 中调用这个方法，实现 thymeleaf 页面跳转
+     * @param templateName html 文件名，不带 .html 后缀
+     * @param req 请求信息
+     * @param resp 响应信息
+     */
     public void processTemplate(String templateName, HttpServletRequest req, HttpServletResponse resp) {
         // 设置要展示的页面为 html，并且指定编码方式为 utf-8
         resp.setContentType("text/html;charset=utf-8");
@@ -52,10 +61,11 @@ public class BaseViewServlet extends HttpServlet {
         WebContext webContext = new WebContext(iWebExchange, req.getLocale());
 
         try {
-            // 输出页面，/ThymeleafDemo.html，req.senRedirect("/ThymeleafDemo.html")
+            // 输出页面，/ThymeleafDemo.html
             templateEngine.process(templateName, webContext, resp.getWriter());
         } catch (IOException e) {
             System.out.println("输出模板页面异常：" + templateName);
         }
     }
+
 }

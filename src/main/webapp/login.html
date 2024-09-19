@@ -137,6 +137,9 @@
     </div>
 </div>
 <script th:inline="javascript">
+    /**
+     * 判断注册错误信息是否有值，如果有值则留在注册表单界面
+     */
     if ([[${registerMsg}]]) {
         changeRegister()
     }

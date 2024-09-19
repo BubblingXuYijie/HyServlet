@@ -12,12 +12,11 @@ import jakarta.servlet.annotation.*;
  * @date 2024/9/9 18:05
  * @description
  */
-// @xxx 这个玩意叫注解，/hello-servlet 是请求路径，也就是form表单的action要请求的uri
+// @开头的这个玩意叫注解，/hello-servlet 是请求路径，也就是form表单的action要请求的uri
 @WebServlet("/hello-servlet")
 public class HelloServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("这是get方法");
         // request 里面存储了 html 发送请求的信息，比如可以拿到参数
         String username = request.getParameter("username");
         String gender = request.getParameter("gender");

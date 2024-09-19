@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2024/9/10 8:35
  * @description 登录校验过滤器
  */
-// /* 代表拦截所有请求，每个请求都要走这个过滤器
+// 通配符 /* 代表拦截所有请求，每个请求都要走这个过滤器
 @WebFilter("/*")
 public class LoginFilter implements Filter {
     /**
@@ -25,11 +25,11 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("进入登录拦截器");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         String requestUri = httpServletRequest.getRequestURI();
+        System.out.println("进入登录拦截器，uri：" + requestUri);
         // 如果请求的uri在允许列表里面，直接放行，return
         // requestUri：/assert/backgroundImage.jpg，有些需要放行 /assert 开头的请求，所以下面用 startWith
         for (String allowUrl : ALLOW_LIST) {

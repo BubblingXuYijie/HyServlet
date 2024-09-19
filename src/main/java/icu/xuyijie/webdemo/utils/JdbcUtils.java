@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * @author 徐一杰
  * @date 2022/9/23
- * @description 数据库连接工具类
+ * @description 操作数据库的工具类
  */
 public class JdbcUtils {
     private JdbcUtils() {
@@ -43,7 +43,7 @@ public class JdbcUtils {
     }
 
     /**
-     * 以防万一，再检查一遍是否已经连接到数据库
+     * 检查是否已经连接到数据库，如果没有则新建连接
      */
     private static void checkAndInitConnection() {
         if (connection == null) {
@@ -58,6 +58,7 @@ public class JdbcUtils {
      * @return 查询结果
      */
     public static List<Map<String, Object>> executeQuery(String sql, Object... params) {
+        // 检查是否已经连接到数据库，如果没有则新建连接
         checkAndInitConnection();
         System.out.println("执行SQL：" + sql + "，参数：" + Arrays.toString(params));
         try {
@@ -88,7 +89,7 @@ public class JdbcUtils {
             System.out.println("查询结果：" + list);
             return list;
         } catch (SQLException e) {
-            System.out.println("执行SQL出现异常，SQL：" + sql);
+            System.out.println("执行SQL出现异常");
             throw new RuntimeException(e);
         }
     }
@@ -98,8 +99,9 @@ public class JdbcUtils {
      * @param sql SQL 语句
      */
     public static void execute(String sql, Object... params) {
+        // 检查是否已经连接到数据库，如果没有则新建连接
         checkAndInitConnection();
-        System.out.println("执行SQL：" + sql);
+        System.out.println("执行SQL：" + sql + "，参数：" + Arrays.toString(params));
         try {
             // 获得statement对象
             statement = connection.prepareStatement(sql);
@@ -108,7 +110,7 @@ public class JdbcUtils {
             // 执行sql 得到结果集
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("执行SQL出现异常，SQL：" + sql);
+            System.out.println("执行SQL出现异常");
             throw new RuntimeException(e);
         }
     }

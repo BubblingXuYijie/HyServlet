@@ -13,7 +13,7 @@ import java.io.IOException;
  * @date 2024/9/19 9:34
  * @description 使用 thymeleaf 自行处理 localhost:8080 打开的首页
  */
-@WebServlet("/")
+@WebServlet("")
 public class IndexServlet extends BaseViewServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

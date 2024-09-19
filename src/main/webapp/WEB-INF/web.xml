@@ -12,11 +12,12 @@
 <!--        <url-pattern>/hello-servlet</url-pattern>-->
 <!--    </servlet-mapping>-->
     <!--修改默认启动页是 login.html-->
-    <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
-    </welcome-file-list>
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/assert/*</url-pattern>
-    </servlet-mapping>
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>login.html</welcome-file>-->
+<!--    </welcome-file-list>-->
+<!--    &lt;!&ndash;因为我们手动接管了 / 路径的处理，所以会导致静态资源失效，要在这里配置静态资源路径&ndash;&gt;-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>/assert/*</url-pattern>-->
+<!--    </servlet-mapping>-->
 </web-app>
