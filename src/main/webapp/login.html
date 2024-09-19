@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        body {
+            background-image: url("assert/backgroundImage.jpg");
+        }
+        .index {
+            background-color: white;
+            width: 30%;
+            min-width: 350px;
+            height: 350px;
+            margin: 0 auto;
+            margin-top: 150px;
+            border-radius: 17px;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            transition: 0.5s all;
+        }
+        .registerClass {
+            width: 30%;
+            min-width: 350px;
+            height: 450px;
+            margin: 100px auto;
+            padding-top: 30px;
+            text-align: center;
+            background-color: white;
+            border-radius: 17px;
+            overflow: hidden;
+            transition: 0.5s all;
+        }
+        .buttonBox {
+            text-align: center;
+        }
+        .buttonBox button {
+            text-decoration: none;
+            font-size: 1.5rem;
+            display: inline-block;
+            width: 90px;
+            height: 40px;
+            color: white;
+            text-align: center;
+            border: 0;
+            border-radius: 7px;
+            margin: 0 5px;
+            transition: all 0.2s;
+        }
+        .buttonBox > :nth-child(1) {
+            background-color: #eeb4be;
+        }
+        .buttonBox > :nth-child(2) {
+            background-color: #6abb91;
+        }
+        .buttonBox button:hover {
+            transform: scale(1.1);
+        }
+        .formInput {
+            width: 88%;
+            height: 35px;
+            border-radius: 7px;
+            border: 1px solid;
+            margin-top: 20px;
+            outline: 0 solid;
+            display: inline-block;
+            transition: all 0.3s ease;
+            padding: 2px 10px;
+        }
+        .formInput:hover {
+            box-shadow: 0 0 30px pink;
+            background-color: paleturquoise;
+            transform: scale(1.05, 1.05);
+        }
+        .formInput:focus {
+            box-shadow: 0 0 30px pink;
+            background-color: paleturquoise;
+            transform: scale(1.05, 1.05);
+        }
+        .loginButton {
+            width: 92%;
+            height: 35px;
+            border-radius: 7px;
+            border: 1px solid;
+            outline: 0 solid;
+            display: block;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+        .loginButton:focus {
+            box-shadow: 5px 5px 10px pink;
+            background-color: paleturquoise;
+        }
+        .loginButton:hover {
+            box-shadow: 5px 5px 10px pink;
+            background-color: paleturquoise;
+            transform: scale(1.05, 1.05);
+            transition: all 0.5s ease;
+        }
+        .loginButton:active {
+            box-shadow: 0 0 10px yellow;
+            background-color: pink;
+            transform: scale(1, 1);
+            transition: all 0.05s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="index" class="index">
+    <div class="buttonBox">
+        <button onclick="changeLogin()">登录</button>
+        <button onclick="changeRegister()">注册</button>
+    </div>
+
+    <div id="login" style="display: block">
+        <h1>XXX系统</h1>
+        <form action="http://localhost:8080/login" method="post">
+            <!--这里的 name 值 username，要和 Java 代码的 request.getParameter("username") 对应-->
+            <input class="formInput" type="text" name="username" placeholder="用户名">
+            <input class="formInput" type="password" name="password" placeholder="密码">
+            <!--input:submit形式的提交按钮，点击后会自动调用 form 的 action 地址-->
+            <input class="loginButton" type="submit" value="登录">
+            <span th:text="${msg}" style="color: red"></span>
+        </form>
+    </div>
+
+    <div id="register" style="display: none">
+        <h1>XXX系统</h1>
+        <form action="http://localhost:8080/register" method="post">
+            <input class="formInput" type="text" name="username" placeholder="用户名">
+            <input class="formInput" type="password" name="password" placeholder="密码">
+            <input class="formInput" type="password" name="rePassword" placeholder="再输入一次密码">
+            <input class="loginButton" type="submit" value="注册">
+            <span th:text="${registerMsg}" style="color: red"></span>
+        </form>
+    </div>
+</div>
+<script th:inline="javascript">
+    if ([[${registerMsg}]]) {
+        changeRegister()
+    }
+
+    /**
+     * 点击登录按钮却换到登录表单
+     */
+    function changeLogin() {
+        const index = document.getElementById('index')
+        const login = document.getElementById('login')
+        const register = document.getElementById('register')
+
+        index.className = 'index'
+        login.style.display = 'block'
+        register.style.display = 'none'
+    }
+
+    /**
+     * 点击注册按钮切换到注册表单
+     */
+    function changeRegister() {
+        const index = document.getElementById('index')
+        const login = document.getElementById('login')
+        const register = document.getElementById('register')
+
+        index.className = 'registerClass'
+        login.style.display = 'none'
+        register.style.display = 'block'
+    }
+</script>
+</body>
+</html>

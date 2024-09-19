@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<!--发送get请求到/hello-servlet标识的Java类-->
+<form action="http://localhost:8080/hello-servlet" method="get">
+  姓名：<input type="text" name="username"><br>
+  性别：<input type="text" name="gender"><br>
+  爱好：<input type="checkbox" name="hobby" value="Java">Java
+  <input type="checkbox" name="hobby" value="C">C
+  <input type="checkbox" name="hobby" value="Python">Python <br>
+  <!--input:submit形式的提交按钮，点击后会自动调用 form 的 action 地址-->
+  <input type="submit" value="提交">
+</form>
+</body>
+</html>
