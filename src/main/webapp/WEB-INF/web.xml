@@ -12,7 +12,11 @@
 <!--        <url-pattern>/hello-servlet</url-pattern>-->
 <!--    </servlet-mapping>-->
     <!--修改默认启动页是 login.html-->
-<!--    <welcome-file-list>-->
-<!--        <welcome-file>login.html</welcome-file>-->
-<!--    </welcome-file-list>-->
+    <welcome-file-list>
+        <welcome-file>login.html</welcome-file>
+    </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/assert/*</url-pattern>
+    </servlet-mapping>
 </web-app>
