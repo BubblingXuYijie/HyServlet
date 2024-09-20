@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * @author 徐一杰
  * @date 2024/9/9 11:49
- * @description 登录模块111111
+ * @description 登录模块
  */
 @WebServlet("/login")
 public class LoginServlet extends BaseViewServlet {
@@ -26,7 +26,8 @@ public class LoginServlet extends BaseViewServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        //String sql = "SELECT * FROM user WHERE username = '" + username + "' AND password = '" + password + "'";
+        //String sql = "SELECT * FROM user WHERE username = '" + username + "' AND password = '" + password + "'"
+        // 不要拼接 sql，把参数传入方法中，防止 SQL 注入攻击
         String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
         List<Map<String, Object>> result = JdbcUtils.executeQuery(sql, username, password);
         if (result.isEmpty()) {
