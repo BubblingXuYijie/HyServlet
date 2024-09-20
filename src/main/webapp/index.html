@@ -1,19 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>学生信息列表</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            text-align: center;
+        }
+        table {
+            margin: 0 auto;
+            text-align: center;
+            background-color: #6abb91;
+        }
+
+        th {
+            background-color: #ccc;
+        }
+        td {
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-<!--发送get请求到/hello-servlet标识的Java类-->
-<form action="http://localhost:8080/hello-servlet" method="get">
-  姓名：<input type="text" name="username"><br>
-  性别：<input type="text" name="gender"><br>
-  爱好：<input type="checkbox" name="hobby" value="Java">Java
-  <input type="checkbox" name="hobby" value="C">C
-  <input type="checkbox" name="hobby" value="Python">Python <br>
-  <!--input:submit形式的提交按钮，点击后会自动调用 form 的 action 地址-->
-  <input type="submit" value="提交">
-</form>
+<h1>学生信息列表</h1>
+<table>
+    <thead>
+    <th style="width: 50px">ID</th>
+    <th style="width: 100px">姓名</th>
+    <th style="width: 100px">性别</th>
+    <th style="width: 100px">年龄</th>
+    <th style="width: 100px">班级</th>
+    <th style="width: 200px">入学时间</th>
+    <th style="width: 100px">是否毕业</th>
+    <th style="width: 200px">操作</th>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${studentList}">
+        <td th:text="${student.id}">1</td>
+        <td th:text="${student.name}">徐一杰</td>
+        <td>[[${student.sex}]]</td>
+        <td th:text="${student.age}">24</td>
+        <td th:text="${student.class}">1班</td>
+        <td th:text="${student.create_time}">2018</td>
+        <td th:text="${student.is_graduate} == 1 ? '是' : '否'">是</td>
+        <td>
+            <button>编辑</button>
+            <button>删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

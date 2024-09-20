@@ -45,7 +45,7 @@ public class LoginServlet extends BaseViewServlet {
             // 登录成功后设置一个登录标识，方便其他页面判断是否登录了
             session.setAttribute("isLogin", true);
             // 跳转到 index.html 页面
-            resp.sendRedirect("/index.html");
+            resp.sendRedirect("/student");
         }
     }
 }
