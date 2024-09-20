@@ -121,6 +121,7 @@
             <input class="formInput" type="password" name="password" placeholder="密码">
             <!--input:submit形式的提交按钮，点击后会自动调用 form 的 action 地址-->
             <input class="loginButton" type="submit" value="登录">
+            <!-- msg 是Java代码中request.setAttribute("msg", "xxx")设置的值 -->
             <span th:text="${msg}" style="color: red"></span>
         </form>
     </div>

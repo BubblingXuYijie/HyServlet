@@ -4,7 +4,6 @@ import icu.xuyijie.webdemo.utils.BaseViewServlet;
 import icu.xuyijie.webdemo.utils.JdbcUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -26,7 +25,7 @@ public class RegisterServlet extends BaseViewServlet {
         String password = req.getParameter("password");
         String rePassword = req.getParameter("rePassword");
 
-        // 查看用户是否已注册
+        // 检查用户是否已注册
         String sql1 = "SELECT * FROM user WHERE username = '" + username + "'";
         List<Map<String, Object>> maps = JdbcUtils.executeQuery(sql1);
         if (!maps.isEmpty()) {
@@ -44,7 +43,7 @@ public class RegisterServlet extends BaseViewServlet {
 
         // CURRENT_TIMESTAMP 是 SQL 的一个函数，会生成当前日期时间
         String sql2 = "INSERT INTO user (username, password, create_time) VALUES ('%s', '%s', CURRENT_TIMESTAMP)";
-        // String.format 会把 sql2 里的 %s 按顺序替换成后面的参数
+        // String.format 会把 sql2 里的 %s 按顺序替换成后面的参数，省去了使用+号拼接带来的麻烦
         JdbcUtils.execute(String.format(sql2, username, password));
         req.setAttribute("msg", "注册成功，请登录");
         super.processTemplate("login", req, resp);

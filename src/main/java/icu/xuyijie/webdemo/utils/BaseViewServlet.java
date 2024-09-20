@@ -61,7 +61,7 @@ public class BaseViewServlet extends HttpServlet {
         WebContext webContext = new WebContext(iWebExchange, req.getLocale());
 
         try {
-            // 输出页面，/ThymeleafDemo.html
+            // 输出页面
             templateEngine.process(templateName, webContext, resp.getWriter());
         } catch (IOException e) {
             System.out.println("输出模板页面异常：" + templateName);
