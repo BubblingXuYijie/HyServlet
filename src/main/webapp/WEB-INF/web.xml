@@ -5,7 +5,7 @@
          version="6.0">
 <!--    <servlet>-->
 <!--        <servlet-name>helloServlet</servlet-name>-->
-<!--        <servlet-class>icu.xuyijie.webdemo.HelloServlet</servlet-class>-->
+<!--        <servlet-class>icu.xuyijie.webdemo.servlet.demo.HelloServlet</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>helloServlet</servlet-name>-->

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑页</title>
+    <style>
+        body {
+            background-color: #cccccc;
+        }
+
+        form {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 200px;
+            padding: 60px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        input, select {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: calc(100% - 60px);
+        }
+
+        input[type = 'radio'] {
+            width: 20px;
+        }
+
+        input[type = 'submit'] {
+            width: 100%;
+            background-color: #6abb91;
+        }
+
+        span {
+            display: inline-block;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/saveStudent}" method="post">
+    <!--id不允许修改，使用 disabled 属性禁用修改-->
+    <span>ID：</span><input type="text" name="id" th:value="${student.id}" readonly><br>
+    <span>姓名：</span><input type="text" name="name" th:value="${student.name}"><br>
+    <span>年龄：</span><input type="number" name="age" th:value="${student.age}"><br>
+    <span>性别：</span>
+    <label>
+        <input type="radio" name="sex" value="男" th:checked="${student.sex} == '男'">男
+    </label>
+    <label>
+        <input type="radio" name="sex" value="女" th:checked="${student.sex} == '女'">女
+    </label>
+    <label>
+        <input type="radio" name="sex" value="人妖" th:checked="${student.sex} == '人妖'">人妖<br>
+    </label>
+    <span>班级：</span>
+    <select name="stuClass" th:value="${student.stuClass}">
+        <option value="软开1班" th:selected="${student.stuClass} == '软开1班'">软开1班</option>
+        <option value="软开2班" th:selected="${student.stuClass} == '软开2班'">软开2班</option>
+        <option value="软开3班" th:selected="${student.stuClass} == '软开3班'">软开3班</option>
+        <option value="软开4班" th:selected="${student.stuClass} == '软开4班'">软开4班</option>
+    </select><br>
+    <span>毕业：</span>
+    <label>
+        <input type="radio" name="isGraduate" value="1" th:checked="${student.isGraduate} == 1">是
+    </label>
+    <label>
+        <input type="radio" name="isGraduate" value="0" th:checked="${student.isGraduate} == 0">否
+    </label><br>
+    <input type="submit" value="保存">
+</form>
+</body>
+</html>

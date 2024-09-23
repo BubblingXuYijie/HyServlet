@@ -1,4 +1,4 @@
-package icu.xuyijie.webdemo;
+package icu.xuyijie.webdemo.servlet.demo;
 
 import java.io.*;
 import java.util.Arrays;

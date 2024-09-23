@@ -75,7 +75,7 @@ public class JdbcUtils {
                 ResultSetMetaData metaData = resultSet.getMetaData();
                 // 查询结果有几条数据
                 int columnCount = metaData.getColumnCount();
-                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>(columnCount);
                 for (int i = 0; i < columnCount; i++) {
                     // jdbc比较特殊，下标从 1 开始，columnName 返回列名，也就是 id 这个字符串
                     String columnName = metaData.getColumnName(i + 1);
@@ -108,7 +108,8 @@ public class JdbcUtils {
             // 设置参数值
             setParams(statement, params);
             // 执行sql 得到结果集
-            statement.executeUpdate();
+            int i = statement.executeUpdate();
+            System.out.println("影响行数：" + i);
         } catch (SQLException e) {
             System.out.println("执行SQL出现异常");
             throw new RuntimeException(e);

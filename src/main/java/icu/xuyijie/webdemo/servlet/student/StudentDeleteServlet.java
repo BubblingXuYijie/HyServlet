@@ -1,6 +1,6 @@
-package icu.xuyijie.webdemo;
+package icu.xuyijie.webdemo.servlet.student;
 
-import icu.xuyijie.webdemo.utils.BaseViewServlet;
+import icu.xuyijie.webdemo.servlet.base.BaseViewServlet;
 import icu.xuyijie.webdemo.utils.JdbcUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package icu.xuyijie.webdemo.utils;
+package icu.xuyijie.webdemo.servlet.base;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;

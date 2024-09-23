@@ -49,7 +49,9 @@
         <td th:text="${student.create_time}">2018</td>
         <td th:text="${student.is_graduate} == 1 ? '是' : '否'">是</td>
         <td>
-            <button>编辑</button>
+            <button>
+                <a th:href="@{/goEditStudent(id=${student.id}, name=${student.name}, sex=${student.sex}, age=${student.age}, class=${student.class}, isGraduate=${student.is_graduate})}">编辑</a>
+            </button>
             <button>
                 <a th:href="@{/delStudent(stuId=${student.id})}">删除</a>
             </button>
