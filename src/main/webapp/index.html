@@ -20,6 +20,10 @@
         td {
             border: 1px solid #ccc;
         }
+        a {
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -46,7 +50,9 @@
         <td th:text="${student.is_graduate} == 1 ? '是' : '否'">是</td>
         <td>
             <button>编辑</button>
-            <button>删除</button>
+            <button>
+                <a th:href="@{/delStudent(stuId=${student.id})}">删除</a>
+            </button>
         </td>
     </tr>
     </tbody>
