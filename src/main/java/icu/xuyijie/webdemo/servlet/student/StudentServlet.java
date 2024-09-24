@@ -20,8 +20,18 @@ import java.util.Map;
 public class StudentServlet extends BaseViewServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sql = "select * from student";
-        List<Map<String, Object>> studentList = JdbcUtils.executeQuery(sql);
+        String searchString = req.getParameter("searchString");
+
+        List<Map<String, Object>> studentList;
+        // 如果搜索框内容为 null 或者 "" 空字符串，查询全部数据
+        if (searchString == null || searchString.isEmpty()) {
+            String sql = "select * from student";
+            studentList = JdbcUtils.executeQuery(sql);
+        } else {
+            // 否则模糊匹配字段
+            String sql = "SELECT * FROM student WHERE name LIKE ? or id = ? or age = ? or class LIKE ? or sex = ?";
+            studentList = JdbcUtils.executeQuery(sql, "%" + searchString + "%", searchString, searchString, "%" + searchString + "%", searchString);
+        }
         // 把查询出来的学生列表，放进去，以便在页面展示
         req.setAttribute("studentList", studentList);
         // 输出index页面

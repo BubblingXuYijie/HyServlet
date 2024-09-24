@@ -26,10 +26,9 @@
             display: inline-block;
             width: 100%;
         }
-        .buttonDiv {
+        .headDiv {
             height: 50px;
             width: 980px;
-            line-height: 50px;
             margin: 0 auto;
             position: relative;
         }
@@ -43,11 +42,38 @@
             border: none;
             border-radius: 10px;
         }
+        .searchInput {
+            position: absolute;
+            left: 0;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+            padding: 0 10px 0 10px;
+            bottom: 10px;
+        }
+        .searchButton {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            background-color: #eeb4be;
+            width: 50px;
+        }
+        .searchDiv {
+            height: 50px;
+            width: 250px;
+            position: relative;
+        }
     </style>
 </head>
 <body>
 <h1>学生信息列表</h1>
-<div class="buttonDiv">
+<div class="headDiv">
+    <div class="searchDiv">
+        <form th:action="@{/student}" method="get">
+            <input class="searchInput" type="text" name="searchString" placeholder="输入内容进行模糊匹配">
+            <input type="submit" value="搜索" class="searchButton newButton">
+        </form>
+    </div>
     <button class="newButton">
         <a th:href="@{/goEditStudent}">新增</a>
     </button>
