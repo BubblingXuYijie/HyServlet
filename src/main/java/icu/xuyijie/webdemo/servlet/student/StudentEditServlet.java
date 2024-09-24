@@ -20,10 +20,12 @@ public class StudentEditServlet extends BaseViewServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student student = new Student();
+        String title = "新增";
 
         String idString = req.getParameter("id");
         // 说明是编辑按钮跳过来的
         if (idString != null) {
+            title = "编辑";
             Integer id = Integer.valueOf(idString);
             String name = req.getParameter("name");
             String sex = req.getParameter("sex");
@@ -39,6 +41,7 @@ public class StudentEditServlet extends BaseViewServlet {
             student.setIsGraduate(isGraduate);
         }
 
+        req.setAttribute("title", title);
         req.setAttribute("student", student);
 
         super.processTemplate("add", req, resp);

@@ -2,10 +2,14 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>编辑页</title>
+    <title>[[${title}]]</title>
     <style>
         body {
             background-color: #cccccc;
+        }
+
+        h1 {
+            text-align: center;
         }
 
         form {
@@ -42,6 +46,7 @@
     </style>
 </head>
 <body>
+<h1>[[${title}]]</h1>
 <form th:action="@{/saveStudent}" method="post">
     <!--id不允许修改，使用 disabled 属性禁用修改-->
     <span>ID：</span><input type="text" name="id" th:value="${student.id}" readonly><br>
