@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * @author 徐一杰
@@ -26,9 +27,9 @@ public class StudentEditServlet extends BaseViewServlet {
             Integer id = Integer.valueOf(idString);
             String name = req.getParameter("name");
             String sex = req.getParameter("sex");
-            Integer age = Integer.parseInt(req.getParameter("age"));
+            Integer age = Integer.parseInt(Optional.ofNullable(req.getParameter("age")).orElse("0"));
             String stuClass = req.getParameter("class");
-            int isGraduate = Integer.parseInt(req.getParameter("isGraduate"));
+            int isGraduate = Integer.parseInt(Optional.ofNullable(req.getParameter("isGraduate")).orElse("0"));
 
             student.setId(id);
             student.setName(name);
