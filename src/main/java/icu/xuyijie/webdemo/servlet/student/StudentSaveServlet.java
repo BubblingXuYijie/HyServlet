@@ -22,9 +22,9 @@ public class StudentSaveServlet extends BaseViewServlet {
         String name = req.getParameter("name");
         String sex = req.getParameter("sex");
         // Optional 用于替换 if else
-        // 等效于：
+        // String ageString = Optional.ofNullable(req.getParameter("age")).orElse("0"), 等效于：
         // if (req.getParameter("age") == null) {
-        //      age = 0;
+        //      ageString = 0;
         // }
         int age = Integer.parseInt(Optional.ofNullable(req.getParameter("age")).orElse("0"));
         String stuClass = req.getParameter("stuClass");
