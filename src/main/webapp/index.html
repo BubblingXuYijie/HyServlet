@@ -23,11 +23,35 @@
         a {
             text-decoration: none;
             color: black;
+            display: inline-block;
+            width: 100%;
+        }
+        .buttonDiv {
+            height: 50px;
+            width: 980px;
+            line-height: 50px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .newButton {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            height: 30px;
+            width: 100px;
+            background-color: cadetblue;
+            border: none;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 <h1>学生信息列表</h1>
+<div class="buttonDiv">
+    <button class="newButton">
+        <a th:href="@{/goEditStudent}">新增</a>
+    </button>
+</div>
 <table>
     <thead>
     <th style="width: 50px">ID</th>

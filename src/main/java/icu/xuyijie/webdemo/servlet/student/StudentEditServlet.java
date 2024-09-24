@@ -18,20 +18,25 @@ import java.io.IOException;
 public class StudentEditServlet extends BaseViewServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer id = Integer.valueOf(req.getParameter("id"));
-        String name = req.getParameter("name");
-        String sex = req.getParameter("sex");
-        Integer age = Integer.parseInt(req.getParameter("age"));
-        String stuClass = req.getParameter("class");
-        int isGraduate = Integer.parseInt(req.getParameter("isGraduate"));
-
         Student student = new Student();
-        student.setId(id);
-        student.setName(name);
-        student.setAge(age);
-        student.setSex(sex);
-        student.setStuClass(stuClass);
-        student.setIsGraduate(isGraduate);
+
+        String idString = req.getParameter("id");
+        // 说明是编辑按钮跳过来的
+        if (idString != null) {
+            Integer id = Integer.valueOf(idString);
+            String name = req.getParameter("name");
+            String sex = req.getParameter("sex");
+            Integer age = Integer.parseInt(req.getParameter("age"));
+            String stuClass = req.getParameter("class");
+            int isGraduate = Integer.parseInt(req.getParameter("isGraduate"));
+
+            student.setId(id);
+            student.setName(name);
+            student.setAge(age);
+            student.setSex(sex);
+            student.setStuClass(stuClass);
+            student.setIsGraduate(isGraduate);
+        }
 
         req.setAttribute("student", student);
 

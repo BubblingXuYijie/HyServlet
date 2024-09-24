@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * @author 徐一杰
@@ -18,17 +19,29 @@ import java.io.IOException;
 public class StudentSaveServlet extends BaseViewServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         String sex = req.getParameter("sex");
-        int age = Integer.parseInt(req.getParameter("age"));
+        // Optional 用于替换 if else
+        // 等效于：
+        // if (req.getParameter("age") == null) {
+        //      age = 0;
+        // }
+        int age = Integer.parseInt(Optional.ofNullable(req.getParameter("age")).orElse("0"));
         String stuClass = req.getParameter("stuClass");
-        int isGraduate = Integer.parseInt(req.getParameter("isGraduate"));
+        int isGraduate = Integer.parseInt(Optional.ofNullable(req.getParameter("isGraduate")).orElse("0"));
 
-        String sql = "UPDATE student SET name = ?, sex = ?, age = ?, class = ?, is_graduate = ? WHERE id = ?";
-        JdbcUtils.execute(sql, name, sex, age, stuClass, isGraduate, id);
+        String idString = req.getParameter("id");
+        // 如果不为 null，说明是编辑操作
+        if (idString != null && !idString.isEmpty()) {
+            int id = Integer.parseInt(idString);
+            String sql = "UPDATE student SET name = ?, sex = ?, age = ?, class = ?, is_graduate = ? WHERE id = ?";
+            JdbcUtils.execute(sql, name, sex, age, stuClass, isGraduate, id);
+        } else {
+            String sql = "INSERT INTO student (name, sex, age, class, is_graduate, create_time) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+            JdbcUtils.execute(sql, name, sex, age, stuClass, isGraduate);
+        }
 
-        // 修改完以后，跳转到列表页
+        // 保存完以后，跳转到列表页
         resp.sendRedirect("/student");
     }
 }
