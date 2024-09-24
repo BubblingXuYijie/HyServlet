@@ -23,15 +23,26 @@ public class StudentEditServlet extends BaseViewServlet {
         String title = "新增";
 
         String idString = req.getParameter("id");
-        // 说明是编辑按钮跳过来的
-        if (idString != null) {
+        // id 为空说明是编辑按钮跳过来的
+        if (idString != null && !idString.isEmpty()) {
             title = "编辑";
-            Integer id = Integer.valueOf(idString);
+            int id = Integer.parseInt(idString);
             String name = req.getParameter("name");
             String sex = req.getParameter("sex");
-            Integer age = Integer.parseInt(Optional.ofNullable(req.getParameter("age")).orElse("0"));
             String stuClass = req.getParameter("class");
-            int isGraduate = Integer.parseInt(Optional.ofNullable(req.getParameter("isGraduate")).orElse("0"));
+
+            // 因为用户可能不输入这个输入框，传来的值就可能为 null 或者 "" 空字符串，这样 Integer.parseInt 就会报错，所以要判空
+            int age = 0;
+            String ageString = req.getParameter("age");
+            if (ageString != null && !ageString.isEmpty()) {
+                age = Integer.parseInt(ageString);
+            }
+
+            String isGraduateString = req.getParameter("isGraduate");
+            int isGraduate = 0;
+            if (isGraduateString != null && !isGraduateString.isEmpty()) {
+                isGraduate = Integer.parseInt(isGraduateString);
+            }
 
             student.setId(id);
             student.setName(name);

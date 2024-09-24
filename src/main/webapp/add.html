@@ -50,8 +50,8 @@
 <form th:action="@{/saveStudent}" method="post">
     <!--id不允许修改，使用 disabled 属性禁用修改-->
     <span>ID：</span><input type="text" name="id" th:value="${student.id}" readonly><br>
-    <span>姓名：</span><input type="text" name="name" th:value="${student.name}"><br>
-    <span>年龄：</span><input type="number" name="age" th:value="${student.age}"><br>
+    <span>姓名：</span><input type="text" name="name" th:value="${student.name}" required><br>
+    <span>年龄：</span><input type="number" name="age" th:value="${student.age}" required><br>
     <span>性别：</span>
     <label>
         <input type="radio" name="sex" value="男" th:checked="${student.sex} == '男'">男
