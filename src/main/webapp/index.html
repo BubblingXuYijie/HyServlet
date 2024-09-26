@@ -82,6 +82,7 @@
     <thead>
     <th style="width: 50px">ID</th>
     <th style="width: 100px">姓名</th>
+    <th style="width: 100px">学号</th>
     <th style="width: 100px">性别</th>
     <th style="width: 100px">年龄</th>
     <th style="width: 100px">班级</th>
@@ -90,20 +91,21 @@
     <th style="width: 200px">操作</th>
     </thead>
     <tbody>
-    <tr th:each="student : ${studentList}">
-        <td th:text="${student.id}">1</td>
-        <td th:text="${student.name}">徐一杰</td>
-        <td>[[${student.sex}]]</td>
-        <td th:text="${student.age}">24</td>
-        <td th:text="${student.class}">1班</td>
-        <td th:text="${student.create_time}">2018</td>
-        <td th:text="${student.is_graduate} == 1 ? '是' : '否'">是</td>
+    <tr th:each="data : ${dataList}">
+        <td th:text="${data.id}">1</td>
+        <td th:text="${data.name}">徐一杰</td>
+        <td th:text="${data.stu_id}"></td>
+        <td>[[${data.sex}]]</td>
+        <td th:text="${data.age}">24</td>
+        <td th:text="${data.class}">1班</td>
+        <td th:text="${data.create_time}">2018</td>
+        <td th:text="${data.is_graduate} == 1 ? '是' : '否'">是</td>
         <td>
             <button>
-                <a th:href="@{/goEditStudent(id=${student.id}, name=${student.name}, sex=${student.sex}, age=${student.age}, class=${student.class}, isGraduate=${student.is_graduate})}">编辑</a>
+                <a th:href="@{/goEditStudent(id=${data.id}, name=${data.name}, stuId=${data.stu_id}, sex=${data.sex}, age=${data.age}, class=${data.class}, isGraduate=${data.is_graduate})}">编辑</a>
             </button>
             <button>
-                <a th:href="@{/delStudent(stuId=${student.id})}">删除</a>
+                <a th:href="@{/delStudent(stuId=${data.id})}">删除</a>
             </button>
         </td>
     </tr>

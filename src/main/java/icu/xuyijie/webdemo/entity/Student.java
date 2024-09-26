@@ -10,11 +10,20 @@ import java.util.Date;
 public class Student {
     private Integer id;
     private String name;
+    private String studentId;
     private Integer age;
     private String sex;
     private String stuClass;
     private Date createTime;
     private Integer isGraduate;
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 
     public Integer getId() {
         return id;

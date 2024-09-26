@@ -28,6 +28,7 @@ public class StudentEditServlet extends BaseViewServlet {
             title = "编辑";
             int id = Integer.parseInt(idString);
             String name = req.getParameter("name");
+            String stuId = req.getParameter("stuId");
             String sex = req.getParameter("sex");
             String stuClass = req.getParameter("class");
 
@@ -46,6 +47,7 @@ public class StudentEditServlet extends BaseViewServlet {
 
             student.setId(id);
             student.setName(name);
+            student.setStudentId(stuId);
             student.setAge(age);
             student.setSex(sex);
             student.setStuClass(stuClass);
