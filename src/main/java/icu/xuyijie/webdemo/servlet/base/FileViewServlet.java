@@ -34,9 +34,13 @@ public class FileViewServlet extends HttpServlet {
 
             // 输出给 response
             try (FileInputStream in = new FileInputStream(file); OutputStream out = response.getOutputStream()) {
+                // 缓冲区，每次向 response 的输出流中写入4096字节的数据
                 byte[] buffer = new byte[4096];
+                // 读取的文件大小 4096，在文件快要被读完时，比如文件大小是 5000，第一次读4096.第二次就是 904
                 int bytesRead;
+                // 如果 in.read  = -1，代表文件读完了
                 while ((bytesRead = in.read(buffer)) != -1) {
+                    // 写入 response 输出流
                     out.write(buffer, 0, bytesRead);
                 }
             }
