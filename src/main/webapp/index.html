@@ -81,6 +81,7 @@
 <table>
     <thead>
     <th style="width: 50px">ID</th>
+    <th style="width: 100px">照片</th>
     <th style="width: 100px">姓名</th>
     <th style="width: 100px">学号</th>
     <th style="width: 100px">性别</th>
@@ -93,6 +94,18 @@
     <tbody>
     <tr th:each="data : ${dataList}">
         <td th:text="${data.id}">1</td>
+        <td>
+            <!--th:if 里面的条件如果成立，就显示当前标签。否则隐藏--->
+            <form th:if="${data.img_url} == null or ${data.img_url} == ''" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+                <!--这个input设为hidden，不显示出来，用于上传文件时携带 id 信息，方便更新数据库-->
+                <input type="text" name="id" hidden="hidden" th:value="${data.id}">
+                请选择文件:
+                <input type="file" name="file" />
+                <br />
+                <input type="submit" value="上传">
+            </form>
+            <img th:if="${not #strings.isEmpty(data.img_url)}" th:src="${data.img_url}" alt="" width="100px" height="100px">
+        </td>
         <td th:text="${data.name}">徐一杰</td>
         <td th:text="${data.stu_id}"></td>
         <td>[[${data.sex}]]</td>

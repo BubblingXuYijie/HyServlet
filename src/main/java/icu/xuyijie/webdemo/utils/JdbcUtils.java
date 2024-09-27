@@ -89,7 +89,7 @@ public class JdbcUtils {
             System.out.println("查询结果：" + list);
             return list;
         } catch (SQLException e) {
-            System.out.println("执行SQL出现异常");
+            System.out.println("执行SQL出现异常：" + e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -111,7 +111,7 @@ public class JdbcUtils {
             int i = statement.executeUpdate();
             System.out.println("影响行数：" + i);
         } catch (SQLException e) {
-            System.out.println("执行SQL出现异常");
+            System.out.println("执行SQL出现异常：" + e.getMessage());
             throw new RuntimeException(e);
         }
     }

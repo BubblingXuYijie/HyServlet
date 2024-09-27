@@ -1,5 +1,6 @@
 package icu.xuyijie.webdemo.servlet.base;
 
+import icu.xuyijie.webdemo.utils.JdbcUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -53,7 +54,12 @@ public class FileUploadServlet extends HttpServlet {
         Files.copy(filePart.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         System.out.println("上传文件：" + filePath);
 
+        // 保存文件访问路径到数据库
+        String id = req.getParameter("id");
+        String sql = "UPDATE student SET img_url = ? WHERE id = ?";
+        JdbcUtils.execute(sql, "http://localhost:8080/file/" + fileName, id);
+
         // 文件上传成功后重定向或返回成功信息
-        resp.sendRedirect("uploadDemo.html");
+        resp.sendRedirect("/student");
     }
 }

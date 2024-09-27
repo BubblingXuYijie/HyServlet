@@ -10,12 +10,21 @@ import java.util.Date;
 public class Student {
     private Integer id;
     private String name;
+    private String imgUrl;
     private String studentId;
     private Integer age;
     private String sex;
     private String stuClass;
     private Date createTime;
     private Integer isGraduate;
+
+    public String getIimgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public String getStudentId() {
         return studentId;
@@ -79,18 +88,5 @@ public class Student {
 
     public void setStuClass(String stuClass) {
         this.stuClass = stuClass;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", stuClass='" + stuClass + '\'' +
-                ", createTime=" + createTime +
-                ", isGraduate=" + isGraduate +
-                '}';
     }
 }

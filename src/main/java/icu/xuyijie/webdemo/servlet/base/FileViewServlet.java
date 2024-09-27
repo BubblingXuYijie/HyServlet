@@ -33,6 +33,7 @@ public class FileViewServlet extends HttpServlet {
             response.setContentLength((int) file.length());
 
             // 输出给 response
+            // try () 是 try-resource 语法
             try (FileInputStream in = new FileInputStream(file); OutputStream out = response.getOutputStream()) {
                 // 缓冲区，每次向 response 的输出流中写入4096字节的数据
                 byte[] buffer = new byte[4096];
