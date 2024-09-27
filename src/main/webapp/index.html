@@ -100,9 +100,9 @@
                 <!--这个input设为hidden，不显示出来，用于上传文件时携带 id 信息，方便更新数据库-->
                 <input type="text" name="id" hidden="hidden" th:value="${data.id}">
                 请选择文件:
-                <input type="file" name="file" />
+                <input id="uploadInput" type="file" name="file" />
                 <br />
-                <input type="submit" value="上传">
+                <input type="submit" value="上传" onclick="return isFileEmpty()">
             </form>
             <img th:if="${not #strings.isEmpty(data.img_url)}" th:src="${data.img_url}" alt="" width="100px" height="100px">
         </td>
@@ -124,5 +124,17 @@
     </tr>
     </tbody>
 </table>
+
+<script>
+    function isFileEmpty() {
+        const uploadInput = document.getElementById('uploadInput')
+        const files = uploadInput.files
+        if (!files || files.length === 0) {
+            alert('请先选择文件再点击上传')
+            return false;
+        }
+        return true
+    }
+</script>
 </body>
 </html>
