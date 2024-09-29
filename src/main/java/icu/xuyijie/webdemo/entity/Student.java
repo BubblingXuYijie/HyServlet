@@ -25,7 +25,7 @@ public class Student {
     private Date createTime;
     private Integer isGraduate;
 
-    public String getIimgUrl() {
+    public String getImgUrl() {
         return imgUrl;
     }
 
