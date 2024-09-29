@@ -1,5 +1,8 @@
 package icu.xuyijie.webdemo.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
+
 import java.util.Date;
 
 /**
@@ -7,14 +10,18 @@ import java.util.Date;
  * @date 2024/9/23 11:55
  * @description 学生实体类
  */
+@ColumnWidth(10)
 public class Student {
     private Integer id;
+    @ExcelProperty("姓名")
     private String name;
+    @ExcelProperty("图片URL")
     private String imgUrl;
     private String studentId;
     private Integer age;
     private String sex;
     private String stuClass;
+    @ColumnWidth(20)
     private Date createTime;
     private Integer isGraduate;
 

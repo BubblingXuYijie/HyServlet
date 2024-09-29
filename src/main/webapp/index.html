@@ -28,7 +28,7 @@
         }
         .headDiv {
             height: 50px;
-            width: 980px;
+            width: 1350px;
             margin: 0 auto;
             position: relative;
         }
@@ -74,6 +74,9 @@
             <input type="submit" value="搜索" class="searchButton newButton">
         </form>
     </div>
+    <button class="newButton" style="right: 120px;background-color: coral">
+        <a th:href="@{/outputData}">导出</a>
+    </button>
     <button class="newButton">
         <a th:href="@{/goEditStudent}">新增</a>
     </button>
