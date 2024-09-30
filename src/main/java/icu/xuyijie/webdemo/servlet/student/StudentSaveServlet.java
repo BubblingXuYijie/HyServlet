@@ -44,7 +44,7 @@ public class StudentSaveServlet extends BaseViewServlet {
             JdbcUtils.execute(sql, name, stuId, sex, age, stuClass, isGraduate);
         }
 
-        // 保存完以后，跳转到列表页
+        // 保存完以后，重定向到列表页，这里不能使用 super.processTemplate(index, req, resp)，因为这个方法不会刷新页面，添加的数据不会显示出来
         resp.sendRedirect("/student");
     }
 }

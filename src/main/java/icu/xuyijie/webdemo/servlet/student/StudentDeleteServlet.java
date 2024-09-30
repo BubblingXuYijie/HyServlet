@@ -21,7 +21,7 @@ public class StudentDeleteServlet extends BaseViewServlet {
         String id = req.getParameter("stuId");
         String sql = "DELETE FROM student WHERE id = ?";
         JdbcUtils.execute(sql, id);
-        // 帮用户刷新一下页面
+        // 帮用户刷新一下页面，不然数据删除后数据库是没有了，但页面还存在
         resp.sendRedirect("/student");
     }
 }

@@ -6,7 +6,6 @@ import icu.xuyijie.webdemo.servlet.base.BaseViewServlet;
 import icu.xuyijie.webdemo.utils.JdbcUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -29,11 +28,14 @@ import java.util.Map;
 public class StudentOutputServlet extends BaseViewServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 查询要导出的学生数据
         String sql = "select * from student";
         List<Map<String, Object>> databaseList = JdbcUtils.executeQuery(sql);
 
+        // new 一个 Student 类型的数组收集学生数据
         List<Student> studentList = new ArrayList<>();
 
+        // 把数据库查询出来的 Map 类型的数据取出来，放入 Student 对象里，添加到 studentList
         for (Map<String, Object> map : databaseList) {
             Student student = new Student();
             student.setId((Integer) map.get("id"));
@@ -63,10 +65,12 @@ public class StudentOutputServlet extends BaseViewServlet {
         resp.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
 
         EasyExcelFactory
+                // resp.getOutputStream 是让浏览器直接下载
                 .write(resp.getOutputStream(), Student.class)
                 .sheet("学生信息1")
                 .doWrite(studentList);
 
+        // 下载链接不跳转，保持在当前的index页面
         super.processTemplate("index", req, resp);
     }
 }

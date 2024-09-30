@@ -44,7 +44,7 @@ public class LoginServlet extends BaseViewServlet {
             HttpSession session = req.getSession();
             // 登录成功后设置一个登录标识，方便其他页面判断是否登录了
             session.setAttribute("isLogin", true);
-            // 跳转到 index.html 页面
+            // 重定向到 /student 对应的servlet类，，这里不能使用 super.processTemplate(index, req, resp)，因为这个方法只是跳转页面，而不会走 /student 对应的 servlet 类，数据不会显示出来
             resp.sendRedirect("/student");
         }
     }

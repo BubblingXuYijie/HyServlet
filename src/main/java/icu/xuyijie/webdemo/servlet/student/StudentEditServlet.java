@@ -54,9 +54,12 @@ public class StudentEditServlet extends BaseViewServlet {
             student.setIsGraduate(isGraduate);
         }
 
+        // 设置页面标题，新增 or 编辑
         req.setAttribute("title", title);
+        // 设置学生数据到页面输入框中上，以便页 add.html 面数据回显
         req.setAttribute("student", student);
 
+        // 跳转到 add.html 页面
         super.processTemplate("add", req, resp);
     }
 }

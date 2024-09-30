@@ -34,7 +34,7 @@ public class StudentServlet extends BaseViewServlet {
         }
         // 把查询出来的学生列表，放进去，以便在页面展示
         req.setAttribute("dataList", dataList);
-        // 输出index页面
+        // 使用 thymeleaf 输出 index.html 页面
         super.processTemplate("index", req, resp);
     }
 }

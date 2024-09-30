@@ -17,12 +17,18 @@ public class Student {
     private String name;
     @ExcelProperty("图片URL")
     private String imgUrl;
+    @ExcelProperty("学号")
     private String studentId;
+    @ExcelProperty("年龄")
     private Integer age;
+    @ExcelProperty("性别")
     private String sex;
+    @ExcelProperty("班级")
     private String stuClass;
     @ColumnWidth(20)
+    @ExcelProperty("入学时间")
     private Date createTime;
+    @ExcelProperty("是否毕业")
     private Integer isGraduate;
 
     public String getImgUrl() {
