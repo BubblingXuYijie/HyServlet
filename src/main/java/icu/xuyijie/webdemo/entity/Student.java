@@ -118,4 +118,19 @@ public class Student {
     public void setStuClass(String stuClass) {
         this.stuClass = stuClass;
     }
+
+    @Override
+    public String toString() {
+        return "学生{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", stuClass='" + stuClass + '\'' +
+                ", createTime=" + createTime +
+                ", isGraduate=" + isGraduate +
+                '}';
+    }
 }
