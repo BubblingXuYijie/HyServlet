@@ -8,6 +8,7 @@
             background-color: antiquewhite;
             text-align: center;
         }
+
         table {
             margin: 0 auto;
             text-align: center;
@@ -17,21 +18,25 @@
         th {
             background-color: #ccc;
         }
+
         td {
             border: 1px solid #ccc;
         }
+
         a {
             text-decoration: none;
             color: black;
             display: inline-block;
             width: 100%;
         }
+
         .headDiv {
             height: 50px;
             width: 1200px;
             margin: 0 auto;
             position: relative;
         }
+
         .newButton {
             position: absolute;
             right: 0;
@@ -42,6 +47,7 @@
             border: none;
             border-radius: 10px;
         }
+
         .searchInput {
             position: absolute;
             left: 0;
@@ -51,6 +57,7 @@
             padding: 0 10px 0 10px;
             bottom: 10px;
         }
+
         .searchButton {
             position: absolute;
             right: 0;
@@ -58,6 +65,7 @@
             background-color: #eeb4be;
             width: 50px;
         }
+
         .searchDiv {
             height: 50px;
             width: 250px;
@@ -95,19 +103,22 @@
     <th style="width: 200px">操作</th>
     </thead>
     <tbody>
+    <!-- dataList是 StudentServlet 里面设置的值，是数据库里查询出的数据，下面语法是循环取出，每取出一条就生成一行表格 -->
     <tr th:each="data : ${dataList}">
         <td th:text="${data.id}">1</td>
         <td>
             <!--th:if 里面的条件如果成立，就显示当前标签。否则隐藏--->
-            <form th:if="${data.img_url} == null or ${data.img_url} == ''" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+            <form th:if="${data.img_url} == null or ${data.img_url} == ''" th:action="@{/upload}" method="post"
+                  enctype="multipart/form-data">
                 <!--这个input设为hidden，不显示出来，用于上传文件时携带 id 信息，方便更新数据库-->
                 <input type="text" name="id" hidden="hidden" th:value="${data.id}">
                 请选择文件:
-                <input id="uploadInput" type="file" name="file" />
-                <br />
+                <input id="uploadInput" type="file" name="file"/>
+                <br/>
                 <input type="submit" value="上传" onclick="return isFileEmpty()">
             </form>
-            <img th:if="${not #strings.isEmpty(data.img_url)}" th:src="${data.img_url}" alt="" width="100px" height="100px">
+            <img th:if="${not #strings.isEmpty(data.img_url)}" th:src="${data.img_url}" alt="" width="100px"
+                 height="100px">
         </td>
         <td th:text="${data.name}">徐一杰</td>
         <td th:text="${data.stu_id}"></td>
@@ -118,6 +129,7 @@
         <td th:text="${data.is_graduate} == 1 ? '是' : '否'">是</td>
         <td>
             <button>
+                <!-- 小括号里的写法意识是请求 /goEditStudent 是传递参数过去，观察浏览器地址栏拼接的URL是 /goEditStudent?id=1&name=xyj... -->
                 <a th:href="@{/goEditStudent(id=${data.id}, name=${data.name}, stuId=${data.stu_id}, sex=${data.sex}, age=${data.age}, class=${data.class}, isGraduate=${data.is_graduate})}">编辑</a>
             </button>
             <button>
@@ -129,6 +141,10 @@
 </table>
 
 <script>
+    /**
+     * 点击上传按钮时检查文件是否为空
+     * @returns {boolean} 文件是否为空
+     */
     function isFileEmpty() {
         const uploadInput = document.getElementById('uploadInput')
         const files = uploadInput.files
