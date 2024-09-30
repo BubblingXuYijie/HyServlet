@@ -1,6 +1,7 @@
 package icu.xuyijie.webdemo.servlet.student;
 
 import com.alibaba.excel.EasyExcelFactory;
+import com.alibaba.fastjson2.JSON;
 import icu.xuyijie.webdemo.entity.Student;
 import icu.xuyijie.webdemo.servlet.base.BaseViewServlet;
 import icu.xuyijie.webdemo.utils.JdbcUtils;
@@ -37,21 +38,11 @@ public class StudentOutputServlet extends BaseViewServlet {
 
         // 把数据库查询出来的 Map 类型的数据取出来，放入 Student 对象里，添加到 studentList
         for (Map<String, Object> map : databaseList) {
-            Student student = new Student();
-            student.setId((Integer) map.get("id"));
-            student.setName((String) map.get("name"));
-            student.setAge((Integer) map.get("age"));
-            student.setSex((String) map.get("sex"));
-            student.setStudentId((String) map.get("stu_id"));
-            student.setIsGraduate((Integer) map.get("is_graduate"));
-            student.setStuClass((String) map.get("class"));
-            student.setImgUrl((String) map.get("img_url"));
 
-            // LocalDateTime 转为 Date，相比于 Date，LocalDataTime 缺少时区
-            LocalDateTime creatTime = (LocalDateTime) map.get("create_time");
-            // 所以 LocalDateTime 转换成 Date 要用下面方式指定时区
-            Date date = Date.from(creatTime.atZone(ZoneId.systemDefault()).toInstant());
-            student.setCreateTime(date);
+            // map 数据格式长这样：{id=1, name=徐一杰}，map 转换成 json
+            String jsonString = JSON.toJSONString(map);
+            // 把 json 字符串转换为 Student 对象
+            Student student = JSON.parseObject(jsonString, Student.class);
 
             studentList.add(student);
         }

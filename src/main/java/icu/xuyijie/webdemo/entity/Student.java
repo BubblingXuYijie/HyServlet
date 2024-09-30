@@ -2,6 +2,7 @@ package icu.xuyijie.webdemo.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
+import com.alibaba.fastjson2.annotation.JSONField;
 
 import java.util.Date;
 
@@ -13,24 +14,37 @@ import java.util.Date;
 @ColumnWidth(12)
 public class Student {
     private Integer id;
+
     @ExcelProperty("姓名")
     private String name;
+
     @ColumnWidth(50)
     @ExcelProperty("图片URL")
+    @JSONField(name = "img_url")
     private String imgUrl;
+
     @ColumnWidth(15)
     @ExcelProperty("学号")
+    @JSONField(name = "stu_id")
     private String studentId;
+
     @ExcelProperty("年龄")
     private Integer age;
+
     @ExcelProperty("性别")
     private String sex;
+
     @ExcelProperty("班级")
+    @JSONField(name = "class")
     private String stuClass;
+
     @ColumnWidth(20)
     @ExcelProperty("入学时间")
+    @JSONField(name = "create_time")
     private Date createTime;
+
     @ExcelProperty("是否毕业")
+    @JSONField(name = "is_graduate")
     private Integer isGraduate;
 
     public String getImgUrl() {
