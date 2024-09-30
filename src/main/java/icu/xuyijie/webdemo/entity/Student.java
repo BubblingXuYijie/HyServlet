@@ -10,13 +10,15 @@ import java.util.Date;
  * @date 2024/9/23 11:55
  * @description 学生实体类
  */
-@ColumnWidth(10)
+@ColumnWidth(12)
 public class Student {
     private Integer id;
     @ExcelProperty("姓名")
     private String name;
+    @ColumnWidth(50)
     @ExcelProperty("图片URL")
     private String imgUrl;
+    @ColumnWidth(15)
     @ExcelProperty("学号")
     private String studentId;
     @ExcelProperty("年龄")
