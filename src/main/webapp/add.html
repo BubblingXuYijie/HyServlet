@@ -73,6 +73,11 @@
         <option value="软开3班" th:selected="${student.stuClass} == '软开3班'">软开3班</option>
         <option value="软开4班" th:selected="${student.stuClass} == '软开4班'">软开4班</option>
     </select><br>
+    <span>班主任：</span>
+    <select name="teacher">
+        <option value="1">徐一杰</option>
+        <option value="2">刘朝阳</option>
+    </select><br>
     <span>毕业：</span>
     <label>
         <input type="radio" name="isGraduate" value="1" th:checked="${student.isGraduate} == 1">是
