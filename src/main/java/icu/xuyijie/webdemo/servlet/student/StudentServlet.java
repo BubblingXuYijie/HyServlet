@@ -25,12 +25,12 @@ public class StudentServlet extends BaseViewServlet {
         List<Map<String, Object>> dataList;
         // 如果搜索框内容为 null 或者 "" 空字符串，查询全部数据
         if (searchString == null || searchString.isEmpty()) {
-            String sql = "select * from student";
+            String sql = "SELECT s.*,t.name as teacherName FROM `student` s LEFT JOIN teacher t ON t.id = s.teacher;";
             dataList = JdbcUtils.executeQuery(sql);
         } else {
             // 否则模糊匹配字段
-            String sql = "SELECT * FROM student WHERE name LIKE ? or id = ? or age = ? or class LIKE ? or sex = ?";
-            dataList = JdbcUtils.executeQuery(sql, "%" + searchString + "%", searchString, searchString, "%" + searchString + "%", searchString);
+            String sql = "SELECT s.*,t.name as teacherName FROM `student` s LEFT JOIN teacher t ON t.id = s.teacher WHERE s.name LIKE ? or s.id = ? or s.age = ? or s.class LIKE ? or s.sex = ? or t.name LIKE ?";
+            dataList = JdbcUtils.executeQuery(sql, "%" + searchString + "%", searchString, searchString, "%" + searchString + "%", searchString, "%" + searchString + "%");
         }
         // 把查询出来的学生列表，放进去，以便在页面展示
         req.setAttribute("dataList", dataList);

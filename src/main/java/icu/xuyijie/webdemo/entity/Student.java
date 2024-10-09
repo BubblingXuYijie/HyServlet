@@ -38,6 +38,17 @@ public class Student {
     @JSONField(name = "class")
     private String stuClass;
 
+    @ExcelProperty("班主任")
+    private Integer teacher;
+
+    public Integer getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Integer teacher) {
+        this.teacher = teacher;
+    }
+
     @ColumnWidth(20)
     @ExcelProperty("入学时间")
     @JSONField(name = "create_time")

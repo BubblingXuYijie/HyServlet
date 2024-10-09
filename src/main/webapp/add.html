@@ -74,9 +74,8 @@
         <option value="软开4班" th:selected="${student.stuClass} == '软开4班'">软开4班</option>
     </select><br>
     <span>班主任：</span>
-    <select name="teacher">
-        <option value="1">徐一杰</option>
-        <option value="2">刘朝阳</option>
+    <select name="teacher" th:value="${student.teacher}">
+        <option th:each="aaaa111 : ${teacherList}" th:value="${aaaa111.id}" th:selected="${student.teacher} == ${aaaa111.name}">[[${aaaa111.name}]]</option>
     </select><br>
     <span>毕业：</span>
     <label>

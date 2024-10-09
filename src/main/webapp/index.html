@@ -98,6 +98,7 @@
     <th style="width: 100px">性别</th>
     <th style="width: 100px">年龄</th>
     <th style="width: 100px">班级</th>
+    <th style="width: 100px">班主任</th>
     <th style="width: 200px">入学时间</th>
     <th style="width: 100px">是否毕业</th>
     <th style="width: 200px">操作</th>
@@ -125,6 +126,7 @@
         <td>[[${data.sex}]]</td>
         <td th:text="${data.age}">24</td>
         <td th:text="${data.class}">1班</td>
+        <td th:text="${data.teacherName}"></td>
         <td th:text="${data.create_time}">2018</td>
         <td th:text="${data.is_graduate} == 1 ? '是' : '否'">是</td>
         <td>

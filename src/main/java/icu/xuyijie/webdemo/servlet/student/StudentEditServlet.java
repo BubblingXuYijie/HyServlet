@@ -2,13 +2,15 @@ package icu.xuyijie.webdemo.servlet.student;
 
 import icu.xuyijie.webdemo.entity.Student;
 import icu.xuyijie.webdemo.servlet.base.BaseViewServlet;
+import icu.xuyijie.webdemo.utils.JdbcUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author 徐一杰
@@ -58,6 +60,11 @@ public class StudentEditServlet extends BaseViewServlet {
         req.setAttribute("title", title);
         // 设置学生数据到页面输入框中上，以便页 add.html 面数据回显
         req.setAttribute("student", student);
+
+        // 查询教师数据，塞给页面
+        String queryTeacherSql = "SELECT * FROM teacher";
+        List<Map<String, Object>> teacherList = JdbcUtils.executeQuery(queryTeacherSql);
+        req.setAttribute("teacherList", teacherList);
 
         // 跳转到 add.html 页面
         super.processTemplate("add", req, resp);
