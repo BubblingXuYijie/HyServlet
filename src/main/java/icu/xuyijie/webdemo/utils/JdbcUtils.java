@@ -77,7 +77,7 @@ public class JdbcUtils {
                 int columnCount = metaData.getColumnCount();
                 Map<String, Object> map = new HashMap<>(columnCount);
                 for (int i = 0; i < columnCount; i++) {
-                    // jdbc比较特殊，下标从 1 开始，columnName 返回列名，也就是 id 这个字符串
+                    // jdbc比较特殊，下标从 1 开始，columnName 返回列名，也就是 id 这个字符串（安全起见，使用getColumnLabel，可以获取 as 的别名）
                     String columnName = metaData.getColumnLabel(i + 1);
                     Object value = resultSet.getObject(i + 1);
                     // 下面的写法和上一行一样，一个是用下标获取值，一个是用表列名获取值
