@@ -38,7 +38,7 @@ public class Student {
     @JSONField(name = "class")
     private String stuClass;
 
-    @ExcelProperty("班主任")
+    @ExcelProperty("班主任id")
     private Integer teacher;
 
     public Integer getTeacher() {

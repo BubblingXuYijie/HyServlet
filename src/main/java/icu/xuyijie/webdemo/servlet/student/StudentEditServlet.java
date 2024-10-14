@@ -33,6 +33,12 @@ public class StudentEditServlet extends BaseViewServlet {
             String stuId = req.getParameter("stuId");
             String sex = req.getParameter("sex");
             String stuClass = req.getParameter("class");
+            String teacherIdString = req.getParameter("teacher");
+            Integer teacherId = null;
+            if (teacherIdString != null && !teacherIdString.isEmpty()) {
+                teacherId = Integer.parseInt(teacherIdString);
+            }
+
 
             // 因为用户可能不输入这个输入框，传来的值就可能为 null 或者 "" 空字符串，这样 Integer.parseInt 就会报错，所以要判空
             int age = 0;
@@ -54,6 +60,7 @@ public class StudentEditServlet extends BaseViewServlet {
             student.setSex(sex);
             student.setStuClass(stuClass);
             student.setIsGraduate(isGraduate);
+            student.setTeacher(teacherId);
         }
 
         // 设置页面标题，新增 or 编辑
