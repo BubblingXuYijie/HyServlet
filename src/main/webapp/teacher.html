@@ -74,9 +74,9 @@
     </style>
 </head>
 <body>
-<h1>学生信息列表</h1>
+<h1>教师信息列表</h1>
 <button><a th:href="@{/student}">学生列表</a></button>
-<button><a th:href="@{/teacher}">教师列表</a></button>
+<button><a th:href="@{/teacher.html}">教师列表</a></button>
 <div class="headDiv">
     <div class="searchDiv">
         <form th:action="@{/student}" method="get">
@@ -94,43 +94,18 @@
 <table>
     <thead>
     <th style="width: 50px">ID</th>
-    <th style="width: 100px">照片</th>
     <th style="width: 100px">姓名</th>
-    <th style="width: 100px">学号</th>
     <th style="width: 100px">性别</th>
-    <th style="width: 100px">年龄</th>
-    <th style="width: 100px">班级</th>
-    <th style="width: 100px">班主任</th>
-    <th style="width: 200px">入学时间</th>
-    <th style="width: 100px">是否毕业</th>
+    <th style="width: 200px">入职时间</th>
     <th style="width: 200px">操作</th>
     </thead>
     <tbody>
     <!-- dataList是 StudentServlet 里面设置的值，是数据库里查询出的数据，下面语法是循环取出，每取出一条就生成一行表格 -->
     <tr th:each="data : ${dataList}">
         <td th:text="${data.id}">1</td>
-        <td>
-            <!--th:if 里面的条件如果成立，就显示当前标签。否则隐藏--->
-            <form th:if="${data.img_url} == null or ${data.img_url} == ''" th:action="@{/upload}" method="post"
-                  enctype="multipart/form-data">
-                <!--这个input设为hidden，不显示出来，用于上传文件时携带 id 信息，方便更新数据库-->
-                <input type="text" name="id" hidden="hidden" th:value="${data.id}">
-                请选择文件:
-                <input id="uploadInput" type="file" name="file"/>
-                <br/>
-                <input type="submit" value="上传" onclick="return isFileEmpty()">
-            </form>
-            <img th:if="${not #strings.isEmpty(data.img_url)}" th:src="${data.img_url}" alt="" width="100px"
-                 height="100px">
-        </td>
         <td th:text="${data.name}">徐一杰</td>
-        <td th:text="${data.stu_id}"></td>
         <td>[[${data.sex}]]</td>
-        <td th:text="${data.age}">24</td>
-        <td th:text="${data.class}">1班</td>
-        <td th:text="${data.teacherName}"></td>
         <td th:text="${data.create_time}">2018</td>
-        <td th:text="${data.is_graduate} == 1 ? '是' : '否'">是</td>
         <td>
             <button>
                 <!-- 小括号里的写法意识是请求 /goEditStudent 是传递参数过去，观察浏览器地址栏拼接的URL是 /goEditStudent?id=1&name=xyj... -->
