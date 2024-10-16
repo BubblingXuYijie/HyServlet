@@ -20,8 +20,16 @@ import java.util.Map;
 public class TeacherServlet extends BaseViewServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sql = "SELECT * FROM teacher";
-        List<Map<String, Object>> teacherList = JdbcUtils.executeQuery(sql);
+        String searchString = req.getParameter("searchString");
+
+        List<Map<String, Object>> teacherList;
+        if (searchString == null || searchString.isEmpty()) {
+            String sql = "SELECT * FROM teacher";
+            teacherList = JdbcUtils.executeQuery(sql);
+        } else {
+            String sql = "SELECT * FROM teacher WHERE name LIKE ? or sex = ?";
+            teacherList = JdbcUtils.executeQuery(sql, "%" + searchString + "%", searchString);
+        }
 
         req.setAttribute("dataList", teacherList);
         super.processTemplate("teacher", req, resp);

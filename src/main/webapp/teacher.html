@@ -76,10 +76,10 @@
 <body>
 <h1>教师信息列表</h1>
 <button><a th:href="@{/student}">学生列表</a></button>
-<button><a th:href="@{/teacher.html}">教师列表</a></button>
+<button><a th:href="@{/teacher}">教师列表</a></button>
 <div class="headDiv">
     <div class="searchDiv">
-        <form th:action="@{/student}" method="get">
+        <form th:action="@{/teacher}" method="get">
             <input class="searchInput" type="text" name="searchString" placeholder="输入内容进行模糊匹配">
             <input type="submit" value="搜索" class="searchButton newButton">
         </form>
