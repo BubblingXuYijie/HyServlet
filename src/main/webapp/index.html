@@ -133,7 +133,7 @@
         <td th:text="${data.is_graduate} == 1 ? '是' : '否'">是</td>
         <td>
             <button>
-                <!-- 小括号里的写法意识是请求 /goEditStudent 是传递参数过去，观察浏览器地址栏拼接的URL是 /goEditStudent?id=1&name=xyj... -->
+                <!-- 小括号里的写法意思是请求 /goEditStudent 是传递参数过去，观察浏览器地址栏拼接的URL是 /goEditStudent?id=1&name=xyj... -->
                 <a th:href="@{/goEditStudent(id=${data.id}, name=${data.name}, stuId=${data.stu_id}, sex=${data.sex}, age=${data.age}, class=${data.class}, isGraduate=${data.is_graduate}, teacher=${data.teacher})}">编辑</a>
             </button>
             <button>
@@ -147,7 +147,9 @@
 <div>
     <!-- pageNo 是当前页码，从0开始的，0是第一页 -->
     <button th:if="${pageNo} > 0"><a th:href="@{/student(pageNo=${pageNo} - 1)}">上一页</a></button>
-    <button th:each="i : ${pageList}">[[${i}]]</button>
+    <button th:each="i : ${pageList}">
+        <a th:href="@{/student(pageNo=${i} - 1)}">[[${i}]]</a>
+    </button>
     <!-- pageTotal 是页码总数量 -->
     <button th:if="${pageNo} < ${pageTotal} - 1"><a th:href="@{/student(pageNo=${pageNo} + 1)}">下一页</a></button>
 </div>
