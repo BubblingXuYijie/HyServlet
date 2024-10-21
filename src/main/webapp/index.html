@@ -144,6 +144,14 @@
     </tbody>
 </table>
 
+<div>
+    <!-- pageNo 是当前页码，从0开始的，0是第一页 -->
+    <button th:if="${pageNo} > 0"><a th:href="@{/student(pageNo=${pageNo} - 1)}">上一页</a></button>
+    <button th:each="i : ${pageList}">[[${i}]]</button>
+    <!-- pageTotal 是页码总数量 -->
+    <button th:if="${pageNo} < ${pageTotal} - 1"><a th:href="@{/student(pageNo=${pageNo} + 1)}">下一页</a></button>
+</div>
+
 <script>
     /**
      * 点击上传按钮时检查文件是否为空
