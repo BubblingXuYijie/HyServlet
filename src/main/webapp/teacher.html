@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>学生信息列表</title>
+    <title>教师信息列表</title>
     <style>
         body {
             background-color: antiquewhite;
@@ -88,7 +88,7 @@
         <a th:href="@{/outputTeacherData}">导出</a>
     </button>
     <button class="newButton">
-        <a th:href="@{/goEditStudent}">新增</a>
+        <a th:href="@{/goEditTeacher}">新增</a>
     </button>
 </div>
 <table>
@@ -109,10 +109,10 @@
         <td>
             <button>
                 <!-- 小括号里的写法意识是请求 /goEditStudent 是传递参数过去，观察浏览器地址栏拼接的URL是 /goEditStudent?id=1&name=xyj... -->
-                <a th:href="@{/goEditStudent(id=${data.id}, name=${data.name}, stuId=${data.stu_id}, sex=${data.sex}, age=${data.age}, class=${data.class}, isGraduate=${data.is_graduate}, teacher=${data.teacher})}">编辑</a>
+                <a th:href="@{/goEditTeacher(id=${data.id}, name=${data.name}, sex=${data.sex})}">编辑</a>
             </button>
             <button>
-                <a th:href="@{/delStudent(stuId=${data.id})}">删除</a>
+                <a th:href="@{/delTeacher(id=${data.id})}">删除</a>
             </button>
         </td>
     </tr>
@@ -120,19 +120,7 @@
 </table>
 
 <script>
-    /**
-     * 点击上传按钮时检查文件是否为空
-     * @returns {boolean} 文件是否为空
-     */
-    function isFileEmpty() {
-        const uploadInput = document.getElementById('uploadInput')
-        const files = uploadInput.files
-        if (!files || files.length === 0) {
-            alert('请先选择文件再点击上传')
-            return false;
-        }
-        return true
-    }
+
 </script>
 </body>
 </html>

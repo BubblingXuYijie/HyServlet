@@ -12,7 +12,7 @@ import java.util.Date;
  * @description
  */
 public class Teacher {
-    private int id;
+    private Integer id;
 
     @ExcelProperty("姓名")
     private String name;
@@ -25,11 +25,11 @@ public class Teacher {
     @JSONField(name = "create_time")
     private Date createTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${title}]]</title>
+    <style>
+        body {
+            background-color: #cccccc;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 200px;
+            padding: 60px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        input, select {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: calc(100% - 60px);
+        }
+
+        input[type = 'radio'] {
+            width: 20px;
+        }
+
+        input[type = 'submit'] {
+            width: 100%;
+            background-color: #6abb91;
+        }
+
+        span {
+            display: inline-block;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<!--显示 新增 或 编辑-->
+<h1>[[${title}]]</h1>
+<form th:action="@{/saveTeacher}" method="post">
+    <!--id不允许修改，使用 disabled 属性禁用修改-->
+    <span>ID：</span><input type="text" name="id" th:value="${teacherData.id}" readonly placeholder="新增无需填写此字段"><br>
+
+    <span>姓名：</span><input type="text" name="name" th:value="${teacherData.name}" required><br>
+
+    <span>性别：</span>
+    <label>
+        <!-- checked 是单选框的属性，后面的值为 true 时选中当前选项-->
+        <input type="radio" name="sex" value="男" th:checked="${teacherData.sex} == '男'">男
+    </label>
+    <label>
+        <input type="radio" name="sex" value="女" th:checked="${teacherData.sex} == '女'">女
+    </label>
+    <label>
+        <input type="radio" name="sex" value="人妖" th:checked="${teacherData.sex} == '人妖'">人妖<br>
+    </label>
+
+    <input type="submit" value="保存">
+</form>
+</body>
+</html>
